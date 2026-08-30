@@ -19,9 +19,9 @@
             --font-main: 'Inter', sans-serif;
             --font-heading: 'Montserrat', sans-serif;
             --radius-soft: 8px;
-            --radius-card: 16px;
-            --shadow-main: 0px 4px 16px rgba(12, 35, 64, 0.05);
-            --shadow-hover: 0px 8px 24px rgba(12, 35, 64, 0.10);
+            --radius-card: 12px;
+            --shadow-main: 0px 4px 12px rgba(12, 35, 64, 0.05);
+            --shadow-hover: 0px 8px 24px rgba(12, 35, 64, 0.09);
         }
 
         *, *::before, *::after {
@@ -54,6 +54,7 @@
             box-shadow: var(--shadow-main);
             transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out, border-color 200ms ease-in-out, border-left-color 200ms ease-in-out;
             cursor: pointer;
+            margin-bottom: 12px;
             position: relative;
             z-index: 10;
         }
@@ -120,7 +121,7 @@
             transform: translateX(16px);
         }
 
-        /* Smooth Expand/Collapse */
+        /* Details animation container */
         .details-wrapper {
             display: grid;
             grid-template-rows: 0fr;
@@ -136,11 +137,11 @@
         }
     </style>
 </head>
-<body class="p-3 sm:p-6 lg:p-8">
+<body class="p-2 sm:p-4 md:p-6">
 
-    <div class="max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-10 rounded-2xl bg-[#FFFFFFEE] border border-[#DBE2E9] shadow-inner bg-[url('Watermark_Background.jpeg')] bg-center bg-cover bg-no-repeat relative">
+    <div class="w-full p-4 sm:p-6 md:p-8 rounded-2xl bg-[#FFFFFFEE] border border-[#DBE2E9] shadow-sm bg-[url('Watermark_Background.jpeg')] bg-center bg-cover bg-no-repeat relative">
         
-        <div class="flex flex-wrap items-center justify-between mb-6 sm:mb-8 gap-4 relative z-20">
+        <div class="flex flex-wrap items-center justify-between mb-6 gap-4 relative z-20">
             <span class="inline-flex items-center space-x-1.5 text-[11px] font-bold text-[#005EB8] bg-[#DBE2E9] px-3 py-1.5 rounded-[4px] font-heading uppercase tracking-wider">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 <span>Foundational Knowledge</span>
@@ -153,106 +154,106 @@
             </button>
         </div>
 
-        <div class="text-center mb-8 sm:mb-10 relative z-20 max-w-3xl mx-auto">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0C2340] tracking-tight font-heading">
+        <div class="text-center mb-6 sm:mb-8 relative z-20">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0C2340] tracking-tight font-heading">
                 The New Standard
             </h1>
-            <p class="text-[#333F48] text-sm sm:text-base mt-2.5">
+            <p class="text-[#333F48] text-xs sm:text-sm md:text-base mt-2 max-w-3xl mx-auto">
                 Understanding the updated expectations for patient safety, dignity, and practice governance. Tap each core principle below to explore.
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 relative z-20">
+        <div class="w-full flex flex-col space-y-3 relative z-20">
             
-            <div class="clean-accordion p-5 flex flex-col justify-start" onclick="toggleAccordion(this)">
-                <div class="flex items-start justify-between">
-                    <div class="flex items-center space-x-3.5">
+            <div class="clean-accordion p-4 sm:p-5" onclick="toggleAccordion(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
                         <span class="badge-icon w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                         </span>
                         <h3 class="font-bold text-[#0C2340] text-sm sm:text-base font-heading">What is an intimate examination?</h3>
                     </div>
-                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-2 mt-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-3 border-t border-slate-100 text-xs sm:text-sm text-[#333F48] leading-relaxed">
+                        <div class="pt-3 mt-3 border-t border-slate-200 text-xs sm:text-sm text-[#333F48] leading-relaxed">
                             It can include examination of the breasts, genitalia, or rectum. It can also include other contact or observation that requires close physical proximity, exposure, or could reasonably make a patient feel vulnerable or uncomfortable.
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="clean-accordion p-5 flex flex-col justify-start" onclick="toggleAccordion(this)">
-                <div class="flex items-start justify-between">
-                    <div class="flex items-center space-x-3.5">
+            <div class="clean-accordion p-4 sm:p-5" onclick="toggleAccordion(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
                         <span class="badge-icon w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                         </span>
                         <h3 class="font-bold text-[#0C2340] text-sm sm:text-base font-heading">Why chaperoning matters</h3>
                     </div>
-                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-2 mt-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-3 border-t border-slate-100 text-xs sm:text-sm text-[#333F48] leading-relaxed">
+                        <div class="pt-3 mt-3 border-t border-slate-200 text-xs sm:text-sm text-[#333F48] leading-relaxed">
                             A chaperone is there to safeguard the patient and clinician, support dignity, provide reassurance, act as an impartial observer, and raise concerns where needed.
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="clean-accordion p-5 flex flex-col justify-start" onclick="toggleAccordion(this)">
-                <div class="flex items-start justify-between">
-                    <div class="flex items-center space-x-3.5">
+            <div class="clean-accordion p-4 sm:p-5" onclick="toggleAccordion(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
                         <span class="badge-icon w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                         </span>
                         <h3 class="font-bold text-[#0C2340] text-sm sm:text-base font-heading">Remote consultations count</h3>
                     </div>
-                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-2 mt-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-3 border-t border-slate-100 text-xs sm:text-sm text-[#333F48] leading-relaxed">
+                        <div class="pt-3 mt-3 border-t border-slate-200 text-xs sm:text-sm text-[#333F48] leading-relaxed">
                             Chaperone considerations apply to video and remote consultations where sensitive discussion, visual examination, image sharing, exposure, or safeguarding risks arise.
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="clean-accordion p-5 flex flex-col justify-start" onclick="toggleAccordion(this)">
-                <div class="flex items-start justify-between">
-                    <div class="flex items-center space-x-3.5">
+            <div class="clean-accordion p-4 sm:p-5" onclick="toggleAccordion(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
                         <span class="badge-icon w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         </span>
                         <h3 class="font-bold text-[#0C2340] text-sm sm:text-base font-heading">Patient safety is everyone's role</h3>
                     </div>
-                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-2 mt-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-3 border-t border-slate-100 text-xs sm:text-sm text-[#333F48] leading-relaxed">
+                        <div class="pt-3 mt-3 border-t border-slate-200 text-xs sm:text-sm text-[#333F48] leading-relaxed">
                             Reception and administrative colleagues may be the first people to identify a need for a chaperone, communicate available options, record a request, or arrange a suitable appointment.
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="clean-accordion p-5 flex flex-col justify-start lg:col-span-2" onclick="toggleAccordion(this)">
-                <div class="flex items-start justify-between">
-                    <div class="flex items-center space-x-3.5">
+            <div class="clean-accordion p-4 sm:p-5" onclick="toggleAccordion(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
                         <span class="badge-icon w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                         </span>
                         <h3 class="font-bold text-[#0C2340] text-sm sm:text-base font-heading">The policy connection</h3>
                     </div>
-                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-2 mt-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    <svg class="chevron-icon w-5 h-5 shrink-0 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-3 border-t border-slate-100 text-xs sm:text-sm text-[#333F48] leading-relaxed">
+                        <div class="pt-3 mt-3 border-t border-slate-200 text-xs sm:text-sm text-[#333F48] leading-relaxed">
                             Local chaperoning arrangements should align with current NHS expectations, safeguarding practice, sexual-safety commitments, equality duties, and clear escalation processes.
                         </div>
                     </div>

@@ -147,11 +147,11 @@
                 <span>Foundational Knowledge</span>
             </span>
 
-            <div id="audioToggleBtn" class="flex items-center space-x-2.5 cursor-pointer bg-white px-3.5 py-2 rounded-full border border-[#DBE2E9] shadow-sm hover:border-slate-300 transition-all">
-                <svg class="w-4 h-4 text-[#005EB8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
-                <span class="text-xs font-semibold text-[#0C2340] font-heading">Audio Narration</span>
+            <button id="audioToggleBtn" type="button" class="flex items-center space-x-2.5 cursor-pointer bg-white px-3.5 py-2 rounded-full border border-[#DBE2E9] shadow-sm hover:border-slate-300 transition-all focus:outline-none">
+                <svg id="speakerIcon" class="w-4 h-4 text-[#005EB8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span id="audioLabel" class="text-xs font-semibold text-[#0C2340] font-heading">Audio Narration</span>
                 <div id="audioSwitch" class="toggle-switch"></div>
-            </div>
+            </button>
         </div>
 
         <div class="text-center mb-8 sm:mb-10 relative z-20">
@@ -263,54 +263,90 @@
         </div>
     </div>
 
-    <audio id="audioNarration" src="New_Standard.wav" preload="auto"></audio>
+    <audio id="audioPart1" src="New_Standard_Part1.wav" preload="auto"></audio>
+    <audio id="audioPart2" src="New_Standard_Part2.wav" preload="auto"></audio>
+    <audio id="audioPart3" src="New_Standard_Part3.wav" preload="auto"></audio>
+    <audio id="audioPart4" src="New_Standard_Part4.wav" preload="auto"></audio>
 
     <script>
-        // Accordion Toggle Logic
+        // Accordion Toggle
         function toggleAccordion(element) {
             const isOpen = element.classList.contains('open');
-            
-            // Close all other accordions (Optional: remove this if you want multiple open at once)
             document.querySelectorAll('.clean-accordion').forEach(acc => {
                 acc.classList.remove('open');
             });
-
             if (!isOpen) {
                 element.classList.add('open');
             }
         }
 
-        // Audio Narration Logic
+        // Direct Audio Playlist Controller
         const audioToggleBtn = document.getElementById('audioToggleBtn');
         const audioSwitch = document.getElementById('audioSwitch');
-        const audioNarration = document.getElementById('audioNarration');
-        let isAudioPlaying = false;
+        const speakerIcon = document.getElementById('speakerIcon');
 
-        audioToggleBtn.addEventListener('click', () => {
-            if (isAudioPlaying) {
-                stopAudio();
-            } else {
-                startAudio();
+        const tracks = [
+            document.getElementById('audioPart1'),
+            document.getElementById('audioPart2'),
+            document.getElementById('audioPart3'),
+            document.getElementById('audioPart4')
+        ];
+
+        let currentIndex = 0;
+        let isPlaying = false;
+
+        function playTrack(index) {
+            if (index >= tracks.length) {
+                stopAllAudio();
+                return;
             }
-        });
 
-        function startAudio() {
-            audioNarration.play().then(() => {
-                isAudioPlaying = true;
+            currentIndex = index;
+            const currentAudio = tracks[currentIndex];
+
+            // Reset time and play
+            currentAudio.currentTime = 0;
+            currentAudio.play().then(() => {
+                isPlaying = true;
                 audioSwitch.classList.add('active');
-            }).catch((error) => {
-                console.error("Audio playback failed. Ensure New_Standard.wav is available.", error);
+                speakerIcon.classList.add('text-[#00BF6F]');
+                speakerIcon.classList.remove('text-[#005EB8]');
+            }).catch(err => {
+                console.error("Playback error on track " + (index + 1) + ":", err);
+                stopAllAudio();
             });
         }
 
-        function stopAudio() {
-            audioNarration.pause();
-            audioNarration.currentTime = 0;
-            isAudioPlaying = false;
+        // Chain event listener to each audio tag
+        tracks.forEach((audioElement, idx) => {
+            audioElement.addEventListener('ended', () => {
+                playTrack(idx + 1);
+            });
+            audioElement.addEventListener('error', (e) => {
+                console.error("Error loading file: " + audioElement.src, e);
+            });
+        });
+
+        function stopAllAudio() {
+            tracks.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+            currentIndex = 0;
+            isPlaying = false;
             audioSwitch.classList.remove('active');
+            speakerIcon.classList.remove('text-[#00BF6F]');
+            speakerIcon.classList.add('text-[#005EB8]');
         }
 
-        audioNarration.addEventListener('ended', stopAudio);
+        audioToggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isPlaying) {
+                stopAllAudio();
+            } else {
+                playTrack(0);
+            }
+        });
     </script>
 </body>
 </html>
